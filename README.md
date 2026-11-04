@@ -2,18 +2,18 @@
 
 A live koi-pond wallpaper for VS Code — koi drifting behind your code, lily pads, ripples — plus a matching teal color theme. A homage to the [Koi Pond](https://github.com/0toshigami/claude-desktop-themes) Claude Desktop theme.
 
-[![Koi Pond demo — click to play](demo-thumb.png)](https://github.com/jnswkz/koi-pond-vscode/blob/master/koipond.mp4)
-
-<sub>▶ Click the image to play the demo.</sub>
+https://github.com/user-attachments/assets/ad343deb-b884-4411-9c0c-d3e887511eb6
 
 ## Install (Windows, one shot)
+
+Download just **`install-koi-pond.ps1`** from [Releases](https://github.com/jnswkz/koi-pond-vscode/releases/latest) (one file — it fetches what it needs), then:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\install-koi-pond.ps1
 ```
 
 The script:
-1. copies `koi-pond.js` to `%USERPROFILE%\.vscode\custom\`
+1. puts `koi-pond.js` in `%USERPROFILE%\.vscode\custom\` (uses the copy next to the script, or downloads it from this repo)
 2. installs the `be5invis.vscode-custom-css` extension
 3. merges the colors + git-blame settings into your VS Code `settings.json` (backup saved as `settings.json.koi-bak`); the wallpaper import path is set automatically for the current user
 

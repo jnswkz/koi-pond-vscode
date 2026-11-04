@@ -9,6 +9,16 @@ $settingsPath = Join-Path $env:APPDATA 'Code\User\settings.json'
 $keys = @('vscode_custom_css.imports', 'workbench.colorCustomizations', 'editor.tokenColorCustomizations',
   'git.blame.editorDecoration.enabled', 'git.blame.statusBarItem.enabled')
 
+# Return a local path to a support file: use the copy next to this script, else download it.
+$RepoRaw = 'https://raw.githubusercontent.com/jnswkz/koi-pond-vscode/master'
+function Get-Asset($name) {
+  $local = Join-Path $src $name
+  if (Test-Path $local) { return $local }
+  $tmp = Join-Path $env:TEMP $name
+  Invoke-WebRequest "$RepoRaw/$name" -OutFile $tmp -UseBasicParsing
+  return $tmp
+}
+
 if (-not (Get-Command code -ErrorAction SilentlyContinue)) {
   Write-Host "Khong tim thay 'code' CLI tren PATH. Mo VS Code > Ctrl+Shift+P > 'Shell Command: Install code command in PATH' roi chay lai." -Foreground Red
   exit 1
@@ -35,7 +45,7 @@ if ($Uninstall) {
 
 # ---- install ----
 New-Item -ItemType Directory -Force $custom | Out-Null
-Copy-Item (Join-Path $src 'koi-pond.js') (Join-Path $custom 'koi-pond.js') -Force
+Copy-Item (Get-Asset 'koi-pond.js') (Join-Path $custom 'koi-pond.js') -Force
 Write-Host "[1/3] Copied koi-pond.js -> $custom" -Foreground Green
 
 Write-Host "[2/3] Installing be5invis.vscode-custom-css ..." -Foreground Green
@@ -51,7 +61,7 @@ catch {
   Write-Host "Dan thu cong cac key trong koi-pond.theme.json, va: `"vscode_custom_css.imports`": [`"$imp`"]" -Foreground Yellow
   exit 1
 }
-$theme = Get-Content (Join-Path $src 'koi-pond.theme.json') -Raw | ConvertFrom-Json
+$theme = Get-Content (Get-Asset 'koi-pond.theme.json') -Raw | ConvertFrom-Json
 foreach ($p in $theme.PSObject.Properties) { $s | Add-Member -NotePropertyName $p.Name -NotePropertyValue $p.Value -Force }
 $imp = 'file:///' + ($custom -replace '\\', '/') + '/koi-pond.js'
 $s | Add-Member -NotePropertyName 'vscode_custom_css.imports' -NotePropertyValue @($imp) -Force
