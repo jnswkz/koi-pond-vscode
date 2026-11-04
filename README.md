@@ -36,4 +36,8 @@ Edit `koi-pond.js` → `CONFIG`: `editorOpacity` / `uiOpacity` (how much pond sh
 
 ## Uninstall
 
-`Ctrl+Shift+P` → **Disable Custom CSS and JS**, restart, then remove the `vscode_custom_css.imports`, `workbench.colorCustomizations` and `editor.tokenColorCustomizations` blocks from `settings.json` (or restore `settings.json.koi-bak`).
+```powershell
+powershell -ExecutionPolicy Bypass -File .\install-koi-pond.ps1 -Uninstall
+```
+
+Removes `koi-pond.js`, strips the Koi Pond keys from `settings.json` (backup saved), and uninstalls the custom-css extension. If the *"corrupt"* banner lingers: `Ctrl+Shift+P` → **Disable Custom CSS and JS** → Restart.
