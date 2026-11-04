@@ -2,7 +2,9 @@
 
 A live koi-pond wallpaper for VS Code — koi drifting behind your code, lily pads, ripples — plus a matching teal color theme. A homage to the [Koi Pond](https://github.com/0toshigami/claude-desktop-themes) Claude Desktop theme.
 
-<video src="https://github.com/jnswkz/koi-pond-vscode/releases/download/v1.0.0/koipond.mp4" controls></video>
+[![Koi Pond demo — click to play](demo-thumb.png)](https://github.com/jnswkz/koi-pond-vscode/blob/master/koipond.mp4)
+
+<sub>▶ Click the image to play the demo.</sub>
 
 ## Install (Windows, one shot)
 
